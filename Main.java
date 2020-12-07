@@ -211,7 +211,41 @@ public class Main {
 					}
 				} 
 				else if (expression.charAt(i) == '-') {
-	
+					
+					for(int j = i+1; j < expression.length(); j++) {
+						
+						if(expression.charAt(j) == '-') {
+							
+							String additional = "";
+							int r = 0;
+							final_exp += expression(expression.substring(0, i));
+							final_term += term(expression.substring(i+1,j));
+							additional += term(expression.substring(j+1));
+								
+							Pattern p = Pattern.compile(regex);
+							Matcher m_1 = p.matcher(final_exp);
+							Matcher m_2 = p.matcher(final_term);
+							Matcher m_3 = p.matcher(additional);
+			
+							if ((m_1.find() && m_1.group().equals(final_exp)) 
+									&& (m_2.find() && m_2.group().equals(final_term))
+									&& (m_3.find() && m_3.group().equals(additional))) {
+			
+								e += Integer.parseInt(final_exp);
+								t += Integer.parseInt(final_term);
+								r += Integer.parseInt(additional);
+								et_output += e - t - r;
+								
+								final_expression_output += Integer.toString(et_output);
+								return final_expression_output;
+							} 
+							else {
+								final_expression_output += final_exp + final_term + additional;
+								return final_expression_output;
+							}									
+						}
+					}
+					
 					final_exp += expression(expression.substring(0, i));
 					final_term += term(expression.substring(i + 1));
 	
