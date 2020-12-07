@@ -4,7 +4,7 @@ import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class My_code_2 {
+public class Main {
 
 	static String[][] variables = new String[10][2];
 	static int[][] values = new int[10][2];
